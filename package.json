@@ -5,8 +5,8 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "start": "node --watch src/",
-    "dev": "nodemon src/",
+    "start": "node --watch backend/todos.js",
+    "dev": "nodemon /backend/models/todos.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint src/",
