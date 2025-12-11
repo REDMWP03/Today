@@ -71,6 +71,3 @@ where user_name = ?
   }
 }
 
-let v = await registerUser('mumba', 'mumz', '2020-07-08');
-
-console.log(v)
