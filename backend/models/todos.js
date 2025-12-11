@@ -1,14 +1,4 @@
-import mysql from "mysql2";
-
-const db_details = {
-  host: 'localhost',
-  user: 'root',
-  password: 'red2003',
-  database: 'today'
-}
-
-const pool = mysql.createPool(db_details).promise();
-
+import { pool } from "./database_config.js";
 //create a todo
 
 export async function createTodo(user_id, action, discription, action_date) {
@@ -104,3 +94,16 @@ where ststus = ? AND user_id = ?
   };
 }
 
+// edit a todo
+export async function editTodo(todo_id, action, discription) {
+  let [result] = await pool.query(`
+update Todos
+set action = ?, discription = ?
+where todo_id = ?
+`, [action, discription, todo_id]);
+
+  return {
+    status: result.info,
+    changed: result.changedRows,
+  };
+}
