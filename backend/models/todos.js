@@ -73,11 +73,12 @@ where todo_id = ?
 
 // delete todo by status 
 
-export async function deleteTodoByStatus(status, user_id) {
+export async function clearTodoByStatus(newStatus, status, user_id) {
   let [result] = await pool.query(`
-delete from Todos
+update Todos
+set ststus = ?
 where ststus = ? AND user_id = ?
-`, [status, user_id]);
+`, [newStatus, status, user_id]);
 
 
   if (result.affectedRows > 0) {

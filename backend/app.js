@@ -1,8 +1,8 @@
 import express from "express";
 
-import registerUserController from "./controllers/user_signiup.js";
-import userLoginController from "./controllers/user_login.js";
+import userRouter from "./routes/userRoutes.js";
 
+import todosRoutes from './routes/todosRoutes.js'
 const app = express();
 
 app.use(express.json())
@@ -10,13 +10,13 @@ app.use(express.json())
 
 //Users routes
 
-// Signup Route
-app.post('/users/signup', registerUserController);
+app.use('/users', userRouter);
 
-// Login Route
-app.post('/users/login', userLoginController)
+//todos routes
 
+app.use('/todos', todosRoutes);
 
+//serve
 app.listen(8080, () => {
   console.log('runing')
 })
